@@ -76,31 +76,40 @@ class Game:
 		list_of_walls.append(Wall(main_screen, x, y))
 
 def read_map():
-	with open('map_1.txt') as file:
-		pass
+	map_to_list = []
+	with open('map_1.txt', 'r') as file:
+		for line in file:
+			map_to_list.append(line.strip())
+
+	for row, tiles in enumerate(map_to_list):
+		for col, tile in enumerate(tiles):
+			if tile == 'w':
+				Game.create_wall(main_screen, col, row)
 
 
+
+
+
+play_game = True
 
 
 main_screen = Game().display
 player = Player(main_screen, 4, 4)
-player.spawn()
 
 pygame.key.set_repeat(100, 50)
 
-
-# test 2
-# Halloaaa
-while True:
+while play_game:
 	Game.draw_grid(main_screen)
 	player.event()
 	player.spawn()
 
-	for p in range(4, 10, 2):
-		for q in range(6, 9):
-			Game.create_wall(main_screen, p, q)
+	read_map()
 
-	Game.create_wall(main_screen, 15, 8)
+	# for p in range(4, 10, 2):
+	# 	for q in range(6, 9):
+	# 		Game.create_wall(main_screen, p, q)
+	#
+	# Game.create_wall(main_screen, 15, 8)
 
 	# list_of_walls.append(Game.create_wall(main_screen, 15, 8))
 
