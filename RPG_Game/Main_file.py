@@ -115,14 +115,7 @@ def read_map():
 			if tile == 'G':
 				Game.create_grass(main_screen, col,row)
 
-
-
-
-
-
 play_game = True
-
-
 main_screen = Game().display
 player = Player(main_screen, 4, 4)
 
@@ -130,18 +123,9 @@ pygame.key.set_repeat(100, 50)
 
 while play_game:
 	Game.draw_grid(main_screen)
+	read_map()
 	player.event()
 	player.spawn()
-
-	read_map()
-
-	# for p in range(4, 10, 2):
-	# 	for q in range(6, 9):
-	# 		Game.create_wall(main_screen, p, q)
-	#
-	# Game.create_wall(main_screen, 15, 8)
-
-	# list_of_walls.append(Game.create_wall(main_screen, 15, 8))
 
 	pygame.display.flip()
 	main_screen.fill((0, 0, 0))
