@@ -54,11 +54,14 @@ class Game:
 			pygame.draw.line(main_screen, (255, 0, 0), (0, y), (WIDTH, y))
 
 	def create_wall(self, x, y):
-		list_of_walls.append(Wall(x, y))
-		main_screen.blit(Wall(x, y).image, (Wall(x, y).rect.x, Wall(x, y).rect.y))
+		wall = Wall(x, y)
+		list_of_walls.append(wall)
+		main_screen.blit(wall.image, (wall.rect.x, wall.rect.y))
 
 	def create_grass(self, x, y):
-		list_of_grass.append(Grass(x, y))
+		grass = Grass(x, y)
+		list_of_grass.append(grass)
+		main_screen.blit(grass.image, (grass.rect.x, grass.rect.y))
 
 def read_map():
 	map_to_list = []
