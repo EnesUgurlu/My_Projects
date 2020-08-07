@@ -1,20 +1,7 @@
-import pygame
 import sys
 from pygame.locals import *
-
-clock = pygame.time.Clock()
-
-TILESIZE = 32
-WIDTH = 24 * TILESIZE
-HEIGHT = 16 * TILESIZE
-PLAYER = pygame.image.load('Images/Cowboy_Dino.png')
-WALL = pygame.image.load('Images/Wall_1.png')
-GRASS = pygame.image.load('Images/Grass.png')
-EMPTY = pygame.image.load('Images/Empty.png')
-list_of_walls = []
-list_of_grass = []
-map = 'map_2.txt'
-
+from RPG_Game.Variables import *
+from RPG_Game.Tiles import *
 
 class Player:
 	def __init__(self, game, x, y):
@@ -53,27 +40,6 @@ class Player:
 				return True
 		return False
 
-class Tile:
-	def __init__(self, game, x, y):
-		self.x = x
-		self.y = y
-		self.game = game
-		self.image = EMPTY
-		self.rect = self.image.get_rect()
-		self.rect.x = self.x * TILESIZE
-		self.rect.y = self.y * TILESIZE
-
-class Grass(Tile):
-	def __init__(self, x, y):
-		super(Grass, self).__init__(self, x, y)
-		self.image = GRASS
-		main_screen.blit(self.image, (self.rect.x, self.rect.y))
-
-class Wall(Tile):
-	def __init__(self, x, y):
-		super(Wall, self).__init__(self, x, y)
-		self.image = WALL
-		main_screen.blit(self.image, (self.rect.x, self.rect.y))
 
 class Game:
 	def __init__(self):
@@ -89,6 +55,7 @@ class Game:
 
 	def create_wall(self, x, y):
 		list_of_walls.append(Wall(x, y))
+		main_screen.blit(Wall(x, y).image, (Wall(x, y).rect.x, Wall(x, y).rect.y))
 
 	def create_grass(self, x, y):
 		list_of_grass.append(Grass(x, y))
