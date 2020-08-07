@@ -9,7 +9,15 @@ WIDTH = 24 * TILESIZE
 HEIGHT = 16 * TILESIZE
 PLAYER = pygame.image.load('Images/Cowboy_Dino.png')
 WALL = pygame.image.load('Images/Wall_1.png')
+GRASS = pygame.image.load('Images/Grass.png')
+EMPTY = pygame.image.load('Images/Empty.png')
 list_of_walls = []
+list_of_grass = []
+map = 'map_2.txt'
+
+
+
+
 
 
 class Player:
@@ -58,7 +66,23 @@ class Wall:
 		self.rect = self.image.get_rect()
 		self.rect.x = self.x * TILESIZE
 		self.rect.y = self.y * TILESIZE
-		main_screen.blit(WALL, (self.rect.x, self.rect.y))
+		main_screen.blit(self.image, (self.rect.x, self.rect.y))
+
+class Tile:
+	def __init__(self, game, x, y):
+		self.x = x
+		self.y = y
+		self.game = game
+		self.image = EMPTY
+		self.rect = self.image.get_rect()
+		self.rect.x = self.x * TILESIZE
+		self.rect.y = self.y * TILESIZE
+
+class Grass(Tile):
+	def __init__(self, x, y):
+		super(Grass, self).__init__(self, x, y)
+		self.image = GRASS
+		main_screen.blit(self.image, (self.rect.x, self.rect.y))
 
 class Game:
 	def __init__(self):
@@ -75,9 +99,12 @@ class Game:
 	def create_wall(self, x, y):
 		list_of_walls.append(Wall(main_screen, x, y))
 
+	def create_grass(self, x, y):
+		list_of_grass.append(Grass(x, y))
+
 def read_map():
 	map_to_list = []
-	with open('map_1.txt', 'r') as file:
+	with open(map, 'r') as file:
 		for line in file:
 			map_to_list.append(line.strip())
 
@@ -85,6 +112,9 @@ def read_map():
 		for col, tile in enumerate(tiles):
 			if tile == 'w':
 				Game.create_wall(main_screen, col, row)
+			if tile == 'G':
+				Game.create_grass(main_screen, col,row)
+
 
 
 
