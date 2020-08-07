@@ -13,31 +13,7 @@ GRASS = pygame.image.load('Images/Grass.png')
 EMPTY = pygame.image.load('Images/Empty.png')
 list_of_walls = []
 list_of_grass = []
-map = 'map_1.txt'
-
-
-
-class Camera:
-	def __init__(self, width, height):
-		self.camera = pygame.Rect(0, 0, width, height)
-		self.width = width
-		self.height = height
-
-	def apply(self, entity):
-		return entity.rect.move(self.camera.topleft)
-
-	def update(self, target):
-		x = -target.rect.x + int(WIDTH / 2)
-		y = -target.rect.y + int(HEIGHT / 2)
-
-
-		# limit scrolling
-		x = min(0, x) # left
-		y = min(0, y) # top
-		x = max(-(self.width - WIDTH), x) # right
-		y = max(-(self.height - HEIGHT), y) # bottom
-		self.camera = pygame.Rect(x, y, self.width, self.height)
-
+map = 'map_2.txt'
 
 
 class Player:
@@ -77,7 +53,6 @@ class Player:
 				return True
 		return False
 
-
 class Tile:
 	def __init__(self, game, x, y):
 		self.x = x
@@ -105,8 +80,6 @@ class Game:
 		pygame.init()
 		pygame.display.set_caption('I am a Window')
 		self.display = pygame.display.set_mode((WIDTH, HEIGHT))
-		self.map = map
-		# self.camera = Camera(len(map_to_list[0]), len(map_to_list))
 
 	def draw_grid(self):
 		for X in range(0, WIDTH, TILESIZE):
@@ -120,8 +93,6 @@ class Game:
 	def create_grass(self, x, y):
 		list_of_grass.append(Grass(x, y))
 
-
-
 def read_map():
 	map_to_list = []
 	with open(map, 'r') as file:
@@ -133,9 +104,7 @@ def read_map():
 			if tile == 'w':
 				Game.create_wall(main_screen, col, row)
 			if tile == 'G':
-				Game.create_grass(main_screen, col, row)
-	return map_to_list
-
+				Game.create_grass(main_screen, col,row)
 
 play_game = True
 main_screen = Game().display
