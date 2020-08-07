@@ -58,7 +58,6 @@ class Wall:
 		self.rect = self.image.get_rect()
 		self.rect.x = self.x * TILESIZE
 		self.rect.y = self.y * TILESIZE
-
 		main_screen.blit(WALL, (self.rect.x, self.rect.y))
 
 class Game:
@@ -75,6 +74,12 @@ class Game:
 
 	def create_wall(self, x, y):
 		list_of_walls.append(Wall(main_screen, x, y))
+
+def read_map():
+	with open('map_1.txt') as file:
+		pass
+
+
 
 
 main_screen = Game().display
@@ -94,8 +99,6 @@ while True:
 	for p in range(4, 10, 2):
 		for q in range(6, 9):
 			Game.create_wall(main_screen, p, q)
-
-
 
 	Game.create_wall(main_screen, 15, 8)
 
