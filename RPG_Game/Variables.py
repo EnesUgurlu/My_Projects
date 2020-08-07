@@ -10,4 +10,4 @@ GRASS = pygame.image.load('Images/Grass.png')
 EMPTY = pygame.image.load('Images/Empty.png')
 list_of_walls = []
 list_of_grass = []
-map = 'map_2.txt'
+map = 'map_1.txt'
