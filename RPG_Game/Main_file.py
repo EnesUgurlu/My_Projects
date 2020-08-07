@@ -53,17 +53,6 @@ class Player:
 				return True
 		return False
 
-class Wall:
-	def __init__(self, game, x, y):
-		self.x = x
-		self.y = y
-		self.game = game
-		self.image = WALL
-		self.rect = self.image.get_rect()
-		self.rect.x = self.x * TILESIZE
-		self.rect.y = self.y * TILESIZE
-		main_screen.blit(self.image, (self.rect.x, self.rect.y))
-
 class Tile:
 	def __init__(self, game, x, y):
 		self.x = x
@@ -80,6 +69,12 @@ class Grass(Tile):
 		self.image = GRASS
 		main_screen.blit(self.image, (self.rect.x, self.rect.y))
 
+class Wall(Tile):
+	def __init__(self, x, y):
+		super(Wall, self).__init__(self, x, y)
+		self.image = WALL
+		main_screen.blit(self.image, (self.rect.x, self.rect.y))
+
 class Game:
 	def __init__(self):
 		pygame.init()
@@ -93,7 +88,7 @@ class Game:
 			pygame.draw.line(main_screen, (255, 0, 0), (0, y), (WIDTH, y))
 
 	def create_wall(self, x, y):
-		list_of_walls.append(Wall(main_screen, x, y))
+		list_of_walls.append(Wall(x, y))
 
 	def create_grass(self, x, y):
 		list_of_grass.append(Grass(x, y))
