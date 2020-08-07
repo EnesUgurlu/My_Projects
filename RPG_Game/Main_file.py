@@ -16,10 +16,6 @@ list_of_grass = []
 map = 'map_2.txt'
 
 
-
-
-
-
 class Player:
 	def __init__(self, game, x, y):
 		self.game = game
