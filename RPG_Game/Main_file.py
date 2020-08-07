@@ -49,9 +49,9 @@ class Game:
 
 	def draw_grid(self):
 		for X in range(0, WIDTH, TILESIZE):
-			pygame.draw.line(main_screen, (255, 0, 0), (X, 0), (X, HEIGHT))
+			pygame.draw.line(main_screen, (211,211,211), (X, 0), (X, HEIGHT))
 		for y in range(0, HEIGHT, TILESIZE):
-			pygame.draw.line(main_screen, (255, 0, 0), (0, y), (WIDTH, y))
+			pygame.draw.line(main_screen, (211,211,211), (0, y), (WIDTH, y))
 
 	def create_wall(self, x, y):
 		wall = Wall(x, y)
