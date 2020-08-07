@@ -15,10 +15,8 @@ class Grass(Tile):
 	def __init__(self, x, y):
 		super(Grass, self).__init__(self, x, y)
 		self.image = GRASS
-		# main_screen.blit(self.image, (self.rect.x, self.rect.y))
 
 class Wall(Tile):
 	def __init__(self, x, y):
 		super(Wall, self).__init__(self, x, y)
 		self.image = WALL
-		# main_screen.blit(self.image, (self.rect.x, self.rect.y))

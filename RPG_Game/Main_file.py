@@ -83,8 +83,8 @@ player = Player(main_screen, 4, 4)
 pygame.key.set_repeat(100, 50)
 
 while play_game:
-	Game.draw_grid(main_screen)
 	read_map()
+	Game.draw_grid(main_screen)
 	player.event()
 	player.spawn()
 
