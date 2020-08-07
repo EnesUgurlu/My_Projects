@@ -1,5 +1,5 @@
 import pygame
-from Tutorial.settings import *
+from RPG_Game.Tutorial.settings import *
 
 
 class Map:

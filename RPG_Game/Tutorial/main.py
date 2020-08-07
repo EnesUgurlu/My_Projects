@@ -1,9 +1,9 @@
 import pygame
 import sys
 from os import path
-from Tutorial.settings import *
-from Tutorial.sprites import *
-from Tutorial.tilemap import *
+from RPG_Game.Tutorial.settings import *
+from RPG_Game.Tutorial.sprites import *
+from RPG_Game.Tutorial.tilemap import *
 
 
 class Game:
