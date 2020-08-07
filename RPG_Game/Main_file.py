@@ -9,6 +9,8 @@ WIDTH = 24 * TILESIZE
 HEIGHT = 16 * TILESIZE
 PLAYER = pygame.image.load('Images/Cowboy_Dino.png')
 WALL = pygame.image.load('Images/Wall_1.png')
+list_of_walls = []
+
 
 class Player:
 	def __init__(self, game, x, y):
@@ -56,6 +58,7 @@ class Wall:
 		self.rect = self.image.get_rect()
 		self.rect.x = self.x * TILESIZE
 		self.rect.y = self.y * TILESIZE
+
 		main_screen.blit(WALL, (self.rect.x, self.rect.y))
 
 class Game:
@@ -71,7 +74,7 @@ class Game:
 			pygame.draw.line(main_screen, (255, 0, 0), (0, y), (WIDTH, y))
 
 	def create_wall(self, x, y):
-		return Wall(main_screen, x, y)
+		list_of_walls.append(Wall(main_screen, x, y))
 
 
 main_screen = Game().display
@@ -80,7 +83,7 @@ player.spawn()
 
 pygame.key.set_repeat(100, 50)
 
-list_of_walls = []
+
 # test 2
 # Halloaaa
 while True:
@@ -88,11 +91,15 @@ while True:
 	player.event()
 	player.spawn()
 
-	for x in range(4, 10, 2):
-		for y in range(6, 9):
-			list_of_walls.append(Game.create_wall(main_screen, x, y))
+	for p in range(4, 10, 2):
+		for q in range(6, 9):
+			Game.create_wall(main_screen, p, q)
 
-	list_of_walls.append(Game.create_wall(main_screen, 15, 8))
+
+
+	Game.create_wall(main_screen, 15, 8)
+
+	# list_of_walls.append(Game.create_wall(main_screen, 15, 8))
 
 	pygame.display.flip()
 	main_screen.fill((0, 0, 0))
