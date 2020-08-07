@@ -8,6 +8,8 @@ class Player:
 		self.game = game
 		self.x = x * TILESIZE
 		self.y = y * TILESIZE
+		self.image = PLAYER
+		self.rect = self.image.get_rect()
 
 	def spawn(self):
 		main_screen.blit(PLAYER, (self.x, self.y))
@@ -74,19 +76,53 @@ def read_map():
 			if tile == 'w':
 				Game.create_wall(main_screen, col, row)
 			if tile == 'G':
-				Game.create_grass(main_screen, col,row)
+				Game.create_grass(main_screen, col, row)
+
+class Camera:
+	def __init__(self, width, height):
+		self.camera = pygame.Rect(0, 0, width, height)
+		self.width = width
+		self.height = height
+
+	def apply(self, entity):
+		return entity.rect.move(self.camera.topleft)
+
+	def update(self, target):
+		x = -target.rect.x + int(WIDTH / 2)
+		y = -target.rect.y + int(HEIGHT / 2)
+
+		# limit scrolling
+		x = min(0, x) # left
+		y = min(0, y) # top
+		x = max(-(self.width - WIDTH), x) # right
+		y = max(-(self.height - HEIGHT), y) # bottom
+		self.camera = pygame.Rect(x, y, self.width, self.height)
+
+
+def create_camera():
+	map_to_list = []
+	with open(map, 'r') as file:
+		for line in file:
+			map_to_list.append(line.strip())
+
+	camera = Camera(len(map_to_list[0]), len(map_to_list))
+	main_screen.blit(player.image, camera.apply(player))
 
 play_game = True
 main_screen = Game().display
 player = Player(main_screen, 4, 4)
-
 pygame.key.set_repeat(100, 50)
+
+
+
 
 while play_game:
 	read_map()
 	Game.draw_grid(main_screen)
 	player.event()
 	player.spawn()
+	camera = create_camera()
+	camera.update(player)
 
 	pygame.display.flip()
 	main_screen.fill((0, 0, 0))
