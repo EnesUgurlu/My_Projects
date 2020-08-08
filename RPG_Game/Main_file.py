@@ -3,8 +3,6 @@ from pygame.locals import *
 from RPG_Game.Variables import *
 from RPG_Game.Tiles import *
 
-
-
 class Player:
 	def __init__(self, game, x, y):
 		self.game = game
@@ -44,7 +42,6 @@ class Player:
 				return True
 		return False
 
-
 class Game:
 	def __init__(self):
 		pygame.init()
@@ -67,10 +64,8 @@ class Game:
 		list_of_grass.append(grass)
 		main_screen.blit(grass.image, (grass.rect.x, grass.rect.y))
 
-
 main_screen = Game().display
 player = Player(main_screen, 4, 4)
-
 
 def read_map():
 	map_to_list = []
@@ -100,7 +95,7 @@ def complex_camera(camera, target):
 	x = -target.x + int(WIDTH / 2)
 	y = -target.y + int(HEIGHT / 2)
 
-	camera.topleft += (pygame.Vector2((x, y)) - pygame.Vector2(camera.topleft)) * 0.06  # add some smoothness coolnes
+	camera.topleft += (pygame.Vector2((x, y)) - pygame.Vector2(camera.topleft)) * 0.06  # add some smoothness coolness
 	# set max/min x/y so we don't see stuff outside the world
 	camera.x = max(-(camera.width - WIDTH), min(0, camera.x))
 	camera.y = max(-(camera.height - HEIGHT), min(0, camera.y))
@@ -128,6 +123,7 @@ while play_game:
 	player.spawn()
 
 	main_screen.blit(player.image, camera.apply(player))
+
 
 	pygame.display.update()
 	# pygame.display.flip()
