@@ -3,6 +3,8 @@ from pygame.locals import *
 from RPG_Game.Variables import *
 from RPG_Game.Tiles import *
 
+
+
 class Player:
 	def __init__(self, game, x, y):
 		self.game = game
@@ -65,6 +67,11 @@ class Game:
 		list_of_grass.append(grass)
 		main_screen.blit(grass.image, (grass.rect.x, grass.rect.y))
 
+
+main_screen = Game().display
+player = Player(main_screen, 4, 4)
+
+
 def read_map():
 	map_to_list = []
 	with open(map, 'r') as file:
@@ -78,53 +85,52 @@ def read_map():
 			if tile == 'G':
 				Game.create_grass(main_screen, col, row)
 
-class Camera:
-	def __init__(self, width, height):
-		self.camera = pygame.Rect(0, 0, width, height)
-		self.width = width
-		self.height = height
+class Camera(object):
+	def __init__(self, camera_function, width, height):
+		self.state = pygame.Rect(0, 0, width, height)
+		self.camera_function = camera_function
 
 	def apply(self, entity):
-		return entity.rect.move(self.camera.topleft)
+		return entity.rect.move(self.state.topleft)
 
 	def update(self, target):
-		x = -target.rect.x + int(WIDTH / 2)
-		y = -target.rect.y + int(HEIGHT / 2)
+		self.state = self.camera_function(self.state, target.rect)
 
-		# limit scrolling
-		x = min(0, x) # left
-		y = min(0, y) # top
-		x = max(-(self.width - WIDTH), x) # right
-		y = max(-(self.height - HEIGHT), y) # bottom
-		self.camera = pygame.Rect(x, y, self.width, self.height)
+def complex_camera(camera, target):
+	x = -target.x + int(WIDTH / 2)
+	y = -target.y + int(HEIGHT / 2)
+
+	camera.topleft += (pygame.Vector2((x, y)) - pygame.Vector2(camera.topleft)) * 0.06  # add some smoothness coolnes
+	# set max/min x/y so we don't see stuff outside the world
+	camera.x = max(-(camera.width - WIDTH), min(0, camera.x))
+	camera.y = max(-(camera.height - HEIGHT), min(0, camera.y))
+	return camera
 
 
-def create_camera():
-	map_to_list = []
-	with open(map, 'r') as file:
-		for line in file:
-			map_to_list.append(line.strip())
+map_to_list = []
+with open(map, 'r') as file:
+	for line in file:
+		map_to_list.append(line.strip())
 
-	camera = Camera(len(map_to_list[0]), len(map_to_list))
-	main_screen.blit(player.image, camera.apply(player))
+map_width = len(map_to_list[0]) * TILESIZE
+map_height = len(map_to_list) * TILESIZE
+
+camera = Camera(complex_camera, map_width, map_height)
+camera.update(player)
 
 play_game = True
-main_screen = Game().display
-player = Player(main_screen, 4, 4)
 pygame.key.set_repeat(100, 50)
-
-
-
 
 while play_game:
 	read_map()
 	Game.draw_grid(main_screen)
 	player.event()
 	player.spawn()
-	camera = create_camera()
-	camera.update(player)
 
-	pygame.display.flip()
+	main_screen.blit(player.image, camera.apply(player))
+
+	pygame.display.update()
+	# pygame.display.flip()
 	main_screen.fill((0, 0, 0))
 	clock.tick(30)
 
