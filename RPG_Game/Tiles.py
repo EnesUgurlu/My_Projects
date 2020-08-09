@@ -16,6 +16,7 @@ class Grass(Tile):
 		super(Grass, self).__init__(self, x, y)
 		self.image = GRASS
 
+
 class Wall(Tile):
 	def __init__(self, x, y):
 		super(Wall, self).__init__(self, x, y)
