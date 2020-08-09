@@ -51,10 +51,8 @@ class Game:
 
 	def running_game(self):
 		game.display.fill((0, 0, 0))
-		self.initialise()
-		self.player.event()
-		self.player.spawn()
-		self.player.move()
+		self.initialise() # Draws the map and player
+		self.player.event()  # Calls the function that moves the player
 		self.camera.update(self.player)
 		self.display.blit(self.player.image, self.camera.apply(self.player))
 
@@ -97,6 +95,7 @@ class Game:
 	def initialise(self):
 		self.draw_grid()
 		self.read_map(map) # map variable is from the Variables file
+		self.player.spawn()
 		self.camera = Camera(self.map_width, self.map_height)
 
 class Camera:
