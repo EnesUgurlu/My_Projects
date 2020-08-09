@@ -52,63 +52,62 @@ class Game:
 	def running_game(self):
 		self.player.spawn()
 
-
 	def draw_grid(self):
 		for X in range(0, WIDTH, TILESIZE):
-			pygame.draw.line(self.display, (211,211,211), (X, 0), (X, HEIGHT))
+			pygame.draw.line(self.display, (211, 211, 211), (X, 0), (X, HEIGHT))
 		for y in range(0, HEIGHT, TILESIZE):
-			pygame.draw.line(main_screen, (211,211,211), (0, y), (WIDTH, y))
+			pygame.draw.line(self.display, (211, 211, 211), (0, y), (WIDTH, y))
 
 	def create_wall(self, x, y):
 		wall = Wall(x, y)
 		list_of_walls.append(wall)
-		main_screen.blit(wall.image, (wall.rect.x, wall.rect.y))
+		self.display.blit(wall.image, (wall.rect.x, wall.rect.y))
 
 	def create_grass(self, x, y):
 		grass = Grass(x, y)
 		list_of_grass.append(grass)
-		main_screen.blit(grass.image, (grass.rect.x, grass.rect.y))
+		self.display.blit(grass.image, (grass.rect.x, grass.rect.y))
 
-main_screen = Game().display
+	def read_map(self, map):
+		map_to_list = []
+		with open(map, 'r') as file:
+			for line in file:
+				map_to_list.append(line.strip())
 
-def read_map():
-	map_to_list = []
-	with open(map, 'r') as file:
-		for line in file:
-			map_to_list.append(line.strip())
+		for row, tiles in enumerate(map_to_list):
+			for col, tile in enumerate(tiles):
+				if tile == 'w':
+					self.create_wall(col, row)
+				if tile == 'G':
+					self.create_grass(col, row)
 
-	for row, tiles in enumerate(map_to_list):
-		for col, tile in enumerate(tiles):
-			if tile == 'w':
-				Game.create_wall(main_screen, col, row)
-			if tile == 'G':
-				Game.create_grass(main_screen, col, row)
+		self.map_width = len(map_to_list[0]) * TILESIZE
+		self.map_height = len(map_to_list) * TILESIZE
 
-map_to_list = []
-with open(map, 'r') as file:
-	for line in file:
-		map_to_list.append(line.strip())
+	def draw(self):
+		self.draw_grid()
+		self.read_map(map) # map variable is from the Variables file
 
-map_width = len(map_to_list[0]) * TILESIZE
-map_height = len(map_to_list) * TILESIZE
 
-# camera.update(player)
+
+# map_to_list = []
+# with open(map, 'r') as file:
+# 	for line in file:
+# 		map_to_list.append(line.strip())
+#
+# map_width = len(map_to_list[0]) * TILESIZE
+# map_height = len(map_to_list) * TILESIZE
+
+game = Game()
 
 play_game = True
 pygame.key.set_repeat(100, 50)
 
 while play_game:
-	read_map()
-	Game.draw_grid(main_screen)
-	Game.running_game(main_screen)
-	# player.event()
-	# player.spawn()
-	#
-	# main_screen.blit(player.image, camera.apply(player))
+	# read_map()
+	game.draw()
 
-
-	pygame.display.update()
-	# pygame.display.flip()
-	main_screen.fill((0, 0, 0))
+	pygame.display.flip()
+	game.display.fill((0, 0, 0))
 	clock.tick(30)
 
