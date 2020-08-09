@@ -51,8 +51,8 @@ class Game:
 
 	def running_game(self):
 		game.display.fill((0, 0, 0))
-		self.initialise()
-
+		self.draw_grid()
+		self.read_map(map)
 		self.player.event()
 		self.player.spawn()
 		pygame.display.flip()
@@ -91,16 +91,34 @@ class Game:
 		self.map_width = len(map_to_list[0]) * TILESIZE
 		self.map_height = len(map_to_list) * TILESIZE
 
-	def initialise(self):
-		self.draw_grid()
-		self.read_map(map) # map variable is from the Variables file
+
+class Camera:
+	def __init__(self, width, height):
+		self.camera = pygame.Rect(0, 0, width, height)
+		self.width = width
+		self.height = height
+
+	def apply(self, entity):
+		return entity.rect.move(self.camera.topleft)
+
+	def update(self, target):
+		x = -target.rect.x + int(WIDTH / 2)
+		y = -target.rect.y + int(HEIGHT / 2)
+
+		# limit scrolling
+		x = min(0, x) # left
+		y = min(0, y) # top
+		x = max(-(self.width - WIDTH), x) # right
+		y = max(-(self.height - HEIGHT), y) # bottom
+		self.camera = pygame.Rect(x, y, self.width, self.height)
+
+
 
 
 game = Game()
 
 play_game = True
 pygame.key.set_repeat(100, 50)
-game.initialise()
 
 while play_game:
 	game.running_game()
