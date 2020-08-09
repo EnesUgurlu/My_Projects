@@ -87,6 +87,7 @@ class Game:
 	def draw(self):
 		self.draw_grid()
 		self.read_map(map) # map variable is from the Variables file
+		self.player.spawn()
 
 
 
