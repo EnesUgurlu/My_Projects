@@ -50,7 +50,9 @@ class Game:
 		self.player = Player(self.display, 4, 4)
 
 	def running_game(self):
-		self.player.spawn()
+		pygame.display.flip()
+		# game.display.fill((0, 0, 0))
+		clock.tick(30)
 
 	def draw_grid(self):
 		for X in range(0, WIDTH, TILESIZE):
@@ -84,31 +86,20 @@ class Game:
 		self.map_width = len(map_to_list[0]) * TILESIZE
 		self.map_height = len(map_to_list) * TILESIZE
 
-	def draw(self):
+	def initialise(self):
 		self.draw_grid()
 		self.read_map(map) # map variable is from the Variables file
 		self.player.spawn()
-
-
-
-# map_to_list = []
-# with open(map, 'r') as file:
-# 	for line in file:
-# 		map_to_list.append(line.strip())
-#
-# map_width = len(map_to_list[0]) * TILESIZE
-# map_height = len(map_to_list) * TILESIZE
 
 game = Game()
 
 play_game = True
 pygame.key.set_repeat(100, 50)
+game.initialise()
 
 while play_game:
-	# read_map()
-	game.draw()
+	game.running_game()
 
-	pygame.display.flip()
-	game.display.fill((0, 0, 0))
-	clock.tick(30)
+
+
 
