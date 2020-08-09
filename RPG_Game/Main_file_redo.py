@@ -52,9 +52,12 @@ class Game:
 	def running_game(self):
 		game.display.fill((0, 0, 0))
 		self.initialise()
-
 		self.player.event()
 		self.player.spawn()
+		self.player.move()
+		self.camera.update(self.player)
+		self.display.blit(self.player.image, self.camera.apply(self.player))
+
 		pygame.display.flip()
 
 		clock.tick(30)
