@@ -51,8 +51,8 @@ class Game:
 
 	def running_game(self):
 		game.display.fill((0, 0, 0))
-		self.draw_grid()
-		self.read_map(map)
+		self.initialise()
+
 		self.player.event()
 		self.player.spawn()
 		pygame.display.flip()
@@ -91,6 +91,10 @@ class Game:
 		self.map_width = len(map_to_list[0]) * TILESIZE
 		self.map_height = len(map_to_list) * TILESIZE
 
+	def initialise(self):
+		self.draw_grid()
+		self.read_map(map) # map variable is from the Variables file
+		self.camera = Camera(self.map_width, self.map_height)
 
 class Camera:
 	def __init__(self, width, height):
@@ -119,8 +123,10 @@ game = Game()
 
 play_game = True
 pygame.key.set_repeat(100, 50)
+game.initialise()
 
 while play_game:
+	game.initialise()
 	game.running_game()
 
 
