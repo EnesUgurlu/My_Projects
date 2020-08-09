@@ -29,48 +29,45 @@ class Game:
 
 	def draw_grid(self):
 		for X in range(0, WIDTH, TILESIZE):
-			pygame.draw.line(self.display, (211,211,211), (X, 0), (X, HEIGHT))
+			pygame.draw.line(Game().display, (211,211,211), (X, 0), (X, HEIGHT))
 		for y in range(0, HEIGHT, TILESIZE):
-			pygame.draw.line(self.display, (211,211,211), (0, y), (WIDTH, y))
+			pygame.draw.line(Game().display, (211,211,211), (0, y), (WIDTH, y))
 
 	def run_game(self):
 		play_game = True
+
 		while play_game:
-			self.read_map()
 			self.draw_grid()
 			self.player.event()
 			self.player.spawn()
-			# self.update_cam()
-
 			pygame.display.flip()
-			# self.display.fill((0, 0, 0))
+
 			clock.tick(30)
 
 	def read_map(self):
-		map_tolist = []
-		with open(map, 'r') as file:
-			for line in file:
-				map_tolist.append(line.strip())
+		map_to_list = []
+		with open(map, 'r') as mapfile:
+			for mapline in mapfile:
+				map_to_list.append(mapline.strip())
 
-		for row, tiles in enumerate(map_tolist):
+		for row, tiles in enumerate(map_to_list):
 			for col, tile in enumerate(tiles):
 				if tile == 'w':
-					wall = Wall(col, row)
-					list_of_walls.append(wall)
-					self.display.blit(wall.image, (wall.rect.x, wall.rect.y))
+					# Wall(col, row)
+					# list_of_walls.append(wall)
+					# self.display.blit(wall.image, (wall.rect.x, wall.rect.y))
+					pass
 				if tile == 'G':
-					grass = Grass(col, row)
-					list_of_grass.append(grass)
-					self.display.blit(grass.image, (grass.rect.x, grass.rect.y))
+					self.create_grass(col, row)
 
 	# def create_wall(self, x, y):
 	# 	wall = Wall(x, y)
 
 
-	# def create_grass(self, x, y):
-	# 	grass = Grass(x, y)
-	# 	list_of_grass.append(grass)
-	# 	self.display.blit(grass.image, (grass.rect.x, grass.rect.y))
+	def create_grass(self, x, y):
+		grass = Grass(x, y)
+		list_of_grass.append(grass)
+		self.display.blit(grass.image, (grass.rect.x, grass.rect.y))
 
 	def new(self):
 		self.draw_grid()
@@ -120,6 +117,7 @@ class Player:
 					wall.rect.y == self.y + dy * TILESIZE:
 				return True
 		return False
+
 
 
 game = Game()
