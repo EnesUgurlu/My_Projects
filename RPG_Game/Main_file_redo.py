@@ -50,8 +50,13 @@ class Game:
 		self.player = Player(self.display, 4, 4)
 
 	def running_game(self):
+		game.display.fill((0, 0, 0))
+		self.initialise()
+
+		self.player.event()
+		self.player.spawn()
 		pygame.display.flip()
-		# game.display.fill((0, 0, 0))
+
 		clock.tick(30)
 
 	def draw_grid(self):
@@ -89,7 +94,7 @@ class Game:
 	def initialise(self):
 		self.draw_grid()
 		self.read_map(map) # map variable is from the Variables file
-		self.player.spawn()
+
 
 game = Game()
 
