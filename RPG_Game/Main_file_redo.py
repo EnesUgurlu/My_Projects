@@ -11,8 +11,13 @@ class Player:
 		self.image = PLAYER
 		self.rect = self.image.get_rect()
 
+
 	def spawn(self):
 		self.game.blit(PLAYER, (self.x, self.y))
+		self.camera = Camera(map_width, map_height)
+
+	def update(self):
+		game.display.blit(self.image, self.camera.apply(self))
 
 	def event(self):
 		for event in pygame.event.get():
@@ -52,13 +57,17 @@ class Game:
 	def running_game(self):
 		game.display.fill((0, 0, 0))
 		self.initialise() # Draws the map and player
+		# Player.camera.update(self.player)
+
 		self.player.event()  # Calls the function that moves the player
-		self.camera.update(self.player)
-		self.display.blit(self.player.image, self.camera.apply(self.player))
 
-		pygame.display.flip()
-
+		self.draw()
 		clock.tick(30)
+
+	def draw(self):
+		self.draw_grid()
+		self.player.update()
+		pygame.display.flip()
 
 	def draw_grid(self):
 		for X in range(0, WIDTH, TILESIZE):
@@ -93,10 +102,10 @@ class Game:
 		self.map_height = len(map_to_list) * TILESIZE
 
 	def initialise(self):
-		self.draw_grid()
+		# self.draw_grid()
 		self.read_map(map) # map variable is from the Variables file
 		self.player.spawn()
-		self.camera = Camera(self.map_width, self.map_height)
+
 
 class Camera:
 	def __init__(self, width, height):
