@@ -11,13 +11,12 @@ class Player:
 		self.image = PLAYER
 		self.rect = self.image.get_rect()
 
-
 	def spawn(self):
 		self.game.blit(PLAYER, (self.x, self.y))
-		self.camera = Camera(map_width, map_height)
 
-	def update(self):
-		game.display.blit(self.image, self.camera.apply(self))
+
+	# def update(self):
+	# 	game.display.blit(self.image, self.camera.apply(self))
 
 	def event(self):
 		for event in pygame.event.get():
@@ -57,16 +56,14 @@ class Game:
 	def running_game(self):
 		game.display.fill((0, 0, 0))
 		self.initialise() # Draws the map and player
-		# Player.camera.update(self.player)
-
+		self.camera.update(self.player)
 		self.player.event()  # Calls the function that moves the player
-
 		self.draw()
 		clock.tick(30)
 
 	def draw(self):
 		self.draw_grid()
-		self.player.update()
+		self.display.blit(self.player.image, self.camera.apply(self.player))
 		pygame.display.flip()
 
 	def draw_grid(self):
@@ -104,6 +101,7 @@ class Game:
 	def initialise(self):
 		# self.draw_grid()
 		self.read_map(map) # map variable is from the Variables file
+		self.camera = Camera(map_width, map_height)
 		self.player.spawn()
 
 
