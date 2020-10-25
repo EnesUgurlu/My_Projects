@@ -1,11 +1,17 @@
 from unittest.mock import patch
-from unittest import TestCase
-# from Weapons_Calculator.Main import calculator
+import unittest
+from Weapons_Calculator.Main import calculator_for_testing
 
 
 
-class Test(TestCase):
-
-	for input_case, output_expected in input_output_dict.items():
-		output_actual = Main.calculator()
-		self.assertEqual(output_expected, output_actual)
+class Test(unittest.TestCase):
+	def test_check_materials(self):
+		self.assertEqual(calculator_for_testing('y', 0, 4, 'y'), {'Silver Masks': 160, 'Gold Masks': 120,
+																	'Insanity': 0, 'Sand': 4,
+																	'Orichalcum': 0, 'Rupies': 8000000})
+		self.assertEqual(calculator_for_testing('y', 0, 8, 'n'), {'Silver Masks': 240, 'Gold Masks': 170,
+																	'Insanity': 35, 'Sand': 4, 'Orichalcum': 5,
+																	'Rupies': 40500000})
+		self.assertEqual(calculator_for_testing('y', 2, 6, 'n'), {'Silver Masks': 128, 'Gold Masks': 90,
+																	'Insanity': 21, 'Sand': 2, 'Orichalcum': 3,
+																	'Rupies': 21500000})
