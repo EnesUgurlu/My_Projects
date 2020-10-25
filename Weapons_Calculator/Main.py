@@ -109,6 +109,8 @@ def calculator():
 
 def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 	# type_wep = input('Do you want to craft a HDT or Agito weapon? ') # Assume Agito for now
+
+	# I use these dictionaries to look up the necessary amount of materials
 	Agito_weapons_first_4 = {
 		'Silver Masks': '40',
 		'Gold Masks': '30',
@@ -142,7 +144,7 @@ def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 		base_wep = True
 	elif check_wep.lower() == 'no' or check_wep.lower() == 'n':
 		base_wep = False
-
+	# Initialize values to 0 and add when necessary
 	silver_masks = 0
 	gold_masks = 0
 	insanity = 0
