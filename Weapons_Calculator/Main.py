@@ -25,34 +25,52 @@ def calculator():
 
 		curr_ub = int(input('How many unbinds does it have? '))
 		desired_ub = int(input('How many unbinds do you want to end at? '))
-		ref_status = str(input('Have you refined your weapon? '))
 		silver_masks = 0
-
-		if ref_status.lower() == 'n' or 'no':
-			silver_masks += int(Agito_weapons_first_4['Silver Masks'])
+		gold_masks = 0
+		insanity = 0
+		sand = 0
+		orichalcum = 0
+		rupies = 0
 
 		if curr_ub >= desired_ub:
-			print('You have more unbinds than you wanted!')
-			return
+			return 'You have already reached or passed your target!'
+
+		ref_status = str(input('Have you refined your weapon? '))
+
+		if ref_status.lower() == 'n' or 'no':
+			silver_masks += int(Agito_weapons_last_4['Silver Masks'])
+			gold_masks += int(Agito_weapons_last_4['Gold Masks'])
+			insanity += int(Agito_weapons_last_4['Insanity'])
+			sand += int(Agito_weapons_last_4['Sand'])
+			orichalcum += int(Agito_weapons_last_4['Orichalcum'])
+			rupies += int(Agito_weapons_last_4['Rupies'])
 
 		if 0 <= curr_ub <= 4:
 			needed_ub_first_half = 4 - curr_ub
 			silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
+			gold_masks += needed_ub_first_half * int(Agito_weapons_first_4['Gold Masks'])
+			insanity += needed_ub_first_half * int(Agito_weapons_first_4['Insanity'])
+			sand += needed_ub_first_half * int(Agito_weapons_first_4['Sand'])
+			orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
+			rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
+
 			needed_ub_second_half = desired_ub - 4
 			silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
+			gold_masks += int(Agito_weapons_first_4['Gold Masks'])
+			insanity += int(Agito_weapons_last_4['Insanity'])
+			sand += int(Agito_weapons_last_4['Sand'])
+			orichalcum += int(Agito_weapons_last_4['Orichalcum'])
+			rupies += int(Agito_weapons_last_4['Rupies'])
+
+
 
 
 		result_dict['Silver Masks'] = silver_masks
+		result_dict['Gold Masks'] = gold_masks
 
 	return result_dict
 
-	# We need one more 'lower unbind' materials here, I will add it manually
-	# elif check_wep.lower() == 'no' or 'n':
-	# 	desired_ub = int(input('How many unbinds do you want to end at? '))
-	# 	needed_ub = desired_ub + 1 # +1 lower_unbind
-
-
-print(calculator())
+my_dict = calculator()
 
 
 
