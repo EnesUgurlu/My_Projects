@@ -37,10 +37,11 @@ def calculator():
 	elif check_wep.lower() == 'no' or check_wep.lower() == 'n':
 		base_wep = False
 	else:
-		print("Please enter 'yes' or 'no'.")
+		check_wep = input("Please enter 'yes' or 'no'.")
 
 	curr_ub = int(input('How many unbinds does it have? '))
 	desired_ub = int(input('How many unbinds do you want to end at? '))
+
 	silver_masks = 0
 	gold_masks = 0
 	insanity = 0
@@ -107,14 +108,16 @@ def calculator():
 # I put this here because I keep forgetting to comment these lines out when testing
 def run():
 	my_dict = calculator()
+	try:
+		for key in my_dict.keys():
+			if key == 'Rupies':
+				print(f'You need {my_dict[key] / 1000000}M {key}')
+			else:
+				print(f'You need {my_dict[key]} {key}')
+	except AttributeError:
+		print('You reach goal comrade')
 
-	for key in my_dict.keys():
-		if key == 'Rupies':
-			print(f'You need {my_dict[key] / 1000000}M {key}')
-		else:
-			print(f'You need {my_dict[key]} {key}')
-
-# run()
+run()
 
 def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 	# type_wep = input('Do you want to craft a HDT or Agito weapon? ') # Assume Agito for now
