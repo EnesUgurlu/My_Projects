@@ -104,8 +104,17 @@ def calculator():
 
 	return result_dict
 
-# my_dict = calculator()
-# print(my_dict)
+# I put this here because I keep forgetting to comment these lines out when testing
+def run():
+	my_dict = calculator()
+
+	for key in my_dict.keys():
+		if key == 'Rupies':
+			print(f'You need {my_dict[key] / 1000000}M {key}')
+		else:
+			print(f'You need {my_dict[key]} {key}')
+
+# run()
 
 def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 	# type_wep = input('Do you want to craft a HDT or Agito weapon? ') # Assume Agito for now
@@ -144,6 +153,9 @@ def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 		base_wep = True
 	elif check_wep.lower() == 'no' or check_wep.lower() == 'n':
 		base_wep = False
+	else:
+		return "Please enter 'yes' or 'no'."
+
 	# Initialize values to 0 and add when necessary
 	silver_masks = 0
 	gold_masks = 0
