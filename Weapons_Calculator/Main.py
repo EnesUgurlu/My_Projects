@@ -38,7 +38,7 @@ def calculator():
 			silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
 			# Todo: Add refinement logic
 
-	result_dict['Silver Masks'] = silver_masks
+		result_dict['Silver Masks'] = silver_masks
 
 	return result_dict
 
