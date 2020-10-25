@@ -86,39 +86,3 @@ def calculator():
 
 my_dict = calculator()
 print(my_dict)
-
-
-
-
-# Materials for Agito:
-# Base weapon:
-# 40 Silver Masks
-# 30 Golden Masks
-# 0 Insanity
-# 1 Sand
-# 0 Orichalcum
-# 2,000,000 (2M) rupies
-
-# First 4 Unbinds:
-# 40 Silver Masks
-# 30 Golden Masks
-# 0 Insanity
-# 1 Sand
-# 0 Orichalcum
-# 2,000,000 (2M) rupies
-
-# Last 4 Unbinds:
-# 16 Silver Masks
-# 10 Golden Masks
-# 7 Insanity
-# 0 Sand
-# 1 Orichalcum
-# 7,500,000 (7.5M) rupies
-
-# Refinement needs:
-# 16 Silver Masks
-# 10 Golden Masks
-# 7 Insanity
-# 0 Sand
-# 1 Orichalcum
-# 2,500,000 (2.5M) rupies
