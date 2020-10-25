@@ -18,3 +18,6 @@ class Test(unittest.TestCase):
 		self.assertEqual(calculator_for_testing('y', 4, 5, 'n'), {'Silver Masks': 32, 'Gold Masks': 20,
 																	'Insanity': 14, 'Sand': 0, 'Orichalcum': 2,
 																	'Rupies': 10000000})
+		self.assertEqual(calculator_for_testing('n', 0, 8, 'n'), {'Silver Masks': 280, 'Gold Masks': 200,
+																	'Insanity': 35, 'Sand': 5, 'Orichalcum': 5,
+																	'Rupies': 42500000})

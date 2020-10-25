@@ -136,9 +136,9 @@ def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 
 	result_dict = dict()
 
-	if check_wep.lower() == 'yes' or 'y':
+	if check_wep.lower() == 'yes' or check_wep.lower() == 'y':
 		base_wep = True
-	else:
+	elif check_wep.lower() == 'no' or check_wep.lower() == 'n':
 		base_wep = False
 
 	silver_masks = 0
@@ -167,8 +167,7 @@ def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 		sand += int(Agito_weapons_refinement['Sand'])
 		orichalcum += int(Agito_weapons_refinement['Orichalcum'])
 		rupies += int(Agito_weapons_refinement['Rupies'])
-	else:
-		pass
+
 
 	if 0 <= curr_ub <= 4 and desired_ub <= 4:
 		needed_ub_first_half = desired_ub - curr_ub
