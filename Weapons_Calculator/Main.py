@@ -3,12 +3,13 @@
 def calculator():
 	# type_wep = input('Do you want to craft a HDT or Agito weapon? ') # Assume Agito
 	check_wep = input('Have you crafted the base weapon? ')
+
 	if check_wep.lower() == 'yes' or 'y':
 		curr_ub = int(input('How many unbinds does it have? '))
 		desired_ub = int(input('How many unbinds do you want to end at? '))
 		needed_ub = desired_ub - curr_ub
 		# Input the necessary materials here
-		one_to_four_silver_mask = (needed_ub - 4) * 40
+		one_to_four_silver_mask = (needed_ub - 4) * int(Agito_weapons_first_4['Silver Masks'])
 		five_to_eight_silver_mask = needed_ub * 16
 		refine_silver_mask = 16
 
@@ -32,6 +33,26 @@ def calculator():
 
 
 calculator()
+
+
+
+Agito_weapons_first_4 = {
+	'Silver Masks': '40',
+	'Gold Masks': '30',
+	'Insanity': '0',
+	'Sand': '1',
+	'Orichalcum': '0',
+	'Rupies': '2000000'
+}
+
+Agito_weapons_last_4 = {
+	'Silver Masks': '40',
+	'Gold Masks': '30',
+	'Insanity': '0',
+	'Sand': '1',
+	'Orichalcum': '0',
+	'Rupies': '2000000'
+}
 
 # Materials for Agito:
 # Base weapon:
