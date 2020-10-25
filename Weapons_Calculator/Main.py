@@ -37,7 +37,7 @@ def calculator():
 
 		ref_status = str(input('Have you refined your weapon? '))
 
-		if ref_status.lower() == 'n' or 'no':
+		if ref_status.lower() == 'n' or ref_status.lower() == 'no':
 			silver_masks += int(Agito_weapons_last_4['Silver Masks'])
 			gold_masks += int(Agito_weapons_last_4['Gold Masks'])
 			insanity += int(Agito_weapons_last_4['Insanity'])
@@ -56,22 +56,23 @@ def calculator():
 
 			needed_ub_second_half = desired_ub - 4
 			silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
-			gold_masks += int(Agito_weapons_first_4['Gold Masks'])
-			insanity += int(Agito_weapons_last_4['Insanity'])
-			sand += int(Agito_weapons_last_4['Sand'])
-			orichalcum += int(Agito_weapons_last_4['Orichalcum'])
-			rupies += int(Agito_weapons_last_4['Rupies'])
-
-
-
+			gold_masks += needed_ub_second_half * int(Agito_weapons_last_4['Gold Masks'])
+			insanity += needed_ub_second_half * int(Agito_weapons_last_4['Insanity'])
+			sand += needed_ub_second_half * int(Agito_weapons_last_4['Sand'])
+			orichalcum += needed_ub_second_half * int(Agito_weapons_last_4['Orichalcum'])
+			rupies += needed_ub_second_half * int(Agito_weapons_last_4['Rupies'])
 
 		result_dict['Silver Masks'] = silver_masks
 		result_dict['Gold Masks'] = gold_masks
+		result_dict['Insanity'] = insanity
+		result_dict['Sand'] = sand
+		result_dict['Orichalcum'] = orichalcum
+		result_dict['Rupies'] = rupies
 
 	return result_dict
 
 my_dict = calculator()
-
+print(my_dict)
 
 
 
