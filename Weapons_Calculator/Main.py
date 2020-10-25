@@ -187,4 +187,3 @@ def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 
 	return result_dict
 
-# print(calculator_for_testing('y', 0, 5, 'y'))
