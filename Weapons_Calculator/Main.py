@@ -31,64 +31,74 @@ def calculator():
 
 	result_dict = dict()
 	check_wep = input('Have you crafted the base weapon? ')
+
 	if check_wep.lower() == 'yes' or 'y':
+		base_wep = True
+	else:
+		base_wep = False
 
-		curr_ub = int(input('How many unbinds does it have? '))
-		desired_ub = int(input('How many unbinds do you want to end at? '))
-		silver_masks = 0
-		gold_masks = 0
-		insanity = 0
-		sand = 0
-		orichalcum = 0
-		rupies = 0
+	curr_ub = int(input('How many unbinds does it have? '))
+	desired_ub = int(input('How many unbinds do you want to end at? '))
+	silver_masks = 0
+	gold_masks = 0
+	insanity = 0
+	sand = 0
+	orichalcum = 0
+	rupies = 0
 
-		if curr_ub >= desired_ub:
-			return 'You have already reached or passed your target!'
+	if curr_ub >= desired_ub:
+		return 'You have already reached or passed your target!'
 
-		ref_status = str(input('Have you refined your weapon? '))
+	ref_status = str(input('Have you refined your weapon? '))
 
-		if ref_status.lower() == 'n' or ref_status.lower() == 'no':
-			silver_masks += int(Agito_weapons_refinement['Silver Masks'])
-			gold_masks += int(Agito_weapons_refinement['Gold Masks'])
-			insanity += int(Agito_weapons_refinement['Insanity'])
-			sand += int(Agito_weapons_refinement['Sand'])
-			orichalcum += int(Agito_weapons_refinement['Orichalcum'])
-			rupies += int(Agito_weapons_refinement['Rupies'])
-		else:
-			pass
+	if not base_wep:
+		silver_masks += int(Agito_weapons_first_4['Silver Masks'])
+		gold_masks += int(Agito_weapons_first_4['Gold Masks'])
+		insanity += int(Agito_weapons_first_4['Insanity'])
+		sand += int(Agito_weapons_first_4['Sand'])
+		orichalcum += int(Agito_weapons_first_4['Orichalcum'])
+		rupies += int(Agito_weapons_first_4['Rupies'])
 
-		if 0 <= curr_ub <= 4 and desired_ub <= 4:
-			needed_ub_first_half = desired_ub - curr_ub
-			silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
-			gold_masks += needed_ub_first_half * int(Agito_weapons_first_4['Gold Masks'])
-			insanity += needed_ub_first_half * int(Agito_weapons_first_4['Insanity'])
-			sand += needed_ub_first_half * int(Agito_weapons_first_4['Sand'])
-			orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
-			rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
-		else:
-			needed_ub_first_half = 4 - curr_ub
-			silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
-			gold_masks += needed_ub_first_half * int(Agito_weapons_first_4['Gold Masks'])
-			insanity += needed_ub_first_half * int(Agito_weapons_first_4['Insanity'])
-			sand += needed_ub_first_half * int(Agito_weapons_first_4['Sand'])
-			orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
-			rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
+	if ref_status.lower() == 'n' or ref_status.lower() == 'no':
+		silver_masks += int(Agito_weapons_refinement['Silver Masks'])
+		gold_masks += int(Agito_weapons_refinement['Gold Masks'])
+		insanity += int(Agito_weapons_refinement['Insanity'])
+		sand += int(Agito_weapons_refinement['Sand'])
+		orichalcum += int(Agito_weapons_refinement['Orichalcum'])
+		rupies += int(Agito_weapons_refinement['Rupies'])
 
-		if desired_ub > 4:
-			needed_ub_second_half = desired_ub - 4
-			silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
-			gold_masks += needed_ub_second_half * int(Agito_weapons_last_4['Gold Masks'])
-			insanity += needed_ub_second_half * int(Agito_weapons_last_4['Insanity'])
-			sand += needed_ub_second_half * int(Agito_weapons_last_4['Sand'])
-			orichalcum += needed_ub_second_half * int(Agito_weapons_last_4['Orichalcum'])
-			rupies += needed_ub_second_half * int(Agito_weapons_last_4['Rupies'])
+	if 0 <= curr_ub <= 4 and desired_ub <= 4:
+		needed_ub_first_half = desired_ub - curr_ub
+		silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
+		gold_masks += needed_ub_first_half * int(Agito_weapons_first_4['Gold Masks'])
+		insanity += needed_ub_first_half * int(Agito_weapons_first_4['Insanity'])
+		sand += needed_ub_first_half * int(Agito_weapons_first_4['Sand'])
+		orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
+		rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
+	else:
+		needed_ub_first_half = 4 - curr_ub
+		silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
+		gold_masks += needed_ub_first_half * int(Agito_weapons_first_4['Gold Masks'])
+		insanity += needed_ub_first_half * int(Agito_weapons_first_4['Insanity'])
+		sand += needed_ub_first_half * int(Agito_weapons_first_4['Sand'])
+		orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
+		rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
 
-		result_dict['Silver Masks'] = silver_masks
-		result_dict['Gold Masks'] = gold_masks
-		result_dict['Insanity'] = insanity
-		result_dict['Sand'] = sand
-		result_dict['Orichalcum'] = orichalcum
-		result_dict['Rupies'] = rupies
+	if desired_ub > 4:
+		needed_ub_second_half = desired_ub - 4
+		silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
+		gold_masks += needed_ub_second_half * int(Agito_weapons_last_4['Gold Masks'])
+		insanity += needed_ub_second_half * int(Agito_weapons_last_4['Insanity'])
+		sand += needed_ub_second_half * int(Agito_weapons_last_4['Sand'])
+		orichalcum += needed_ub_second_half * int(Agito_weapons_last_4['Orichalcum'])
+		rupies += needed_ub_second_half * int(Agito_weapons_last_4['Rupies'])
+
+	result_dict['Silver Masks'] = silver_masks
+	result_dict['Gold Masks'] = gold_masks
+	result_dict['Insanity'] = insanity
+	result_dict['Sand'] = sand
+	result_dict['Orichalcum'] = orichalcum
+	result_dict['Rupies'] = rupies
 
 	return result_dict
 
@@ -125,65 +135,73 @@ def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 	}
 
 	result_dict = dict()
-	# check_wep = input('Have you crafted the base weapon? ')
+
 	if check_wep.lower() == 'yes' or 'y':
+		base_wep = True
+	else:
+		base_wep = False
 
-		# curr_ub = int(input('How many unbinds does it have? '))
-		# desired_ub = int(input('How many unbinds do you want to end at? '))
-		silver_masks = 0
-		gold_masks = 0
-		insanity = 0
-		sand = 0
-		orichalcum = 0
-		rupies = 0
+	silver_masks = 0
+	gold_masks = 0
+	insanity = 0
+	sand = 0
+	orichalcum = 0
+	rupies = 0
 
-		if curr_ub >= desired_ub:
-			return 'You have already reached or passed your target!'
+	if curr_ub >= desired_ub:
+		return 'You have already reached or passed your target!'
 
-		# ref_status = str(input('Have you refined your weapon? '))
+	if not base_wep:
+		silver_masks += int(Agito_weapons_first_4['Silver Masks'])
+		gold_masks += int(Agito_weapons_first_4['Gold Masks'])
+		insanity += int(Agito_weapons_first_4['Insanity'])
+		sand += int(Agito_weapons_first_4['Sand'])
+		orichalcum += int(Agito_weapons_first_4['Orichalcum'])
+		rupies += int(Agito_weapons_first_4['Rupies'])
 
-		if ref_status.lower() == 'n' or ref_status.lower() == 'no':
-			silver_masks += int(Agito_weapons_refinement['Silver Masks'])
-			gold_masks += int(Agito_weapons_refinement['Gold Masks'])
-			insanity += int(Agito_weapons_refinement['Insanity'])
-			sand += int(Agito_weapons_refinement['Sand'])
-			orichalcum += int(Agito_weapons_refinement['Orichalcum'])
-			rupies += int(Agito_weapons_refinement['Rupies'])
-		else:
-			pass
 
-		if 0 <= curr_ub <= 4 and desired_ub <= 4:
-			needed_ub_first_half = desired_ub - curr_ub
-			silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
-			gold_masks += needed_ub_first_half * int(Agito_weapons_first_4['Gold Masks'])
-			insanity += needed_ub_first_half * int(Agito_weapons_first_4['Insanity'])
-			sand += needed_ub_first_half * int(Agito_weapons_first_4['Sand'])
-			orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
-			rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
-		else:
-			needed_ub_first_half = 4 - curr_ub
-			silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
-			gold_masks += needed_ub_first_half * int(Agito_weapons_first_4['Gold Masks'])
-			insanity += needed_ub_first_half * int(Agito_weapons_first_4['Insanity'])
-			sand += needed_ub_first_half * int(Agito_weapons_first_4['Sand'])
-			orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
-			rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
+	if ref_status.lower() == 'n' or ref_status.lower() == 'no':
+		silver_masks += int(Agito_weapons_refinement['Silver Masks'])
+		gold_masks += int(Agito_weapons_refinement['Gold Masks'])
+		insanity += int(Agito_weapons_refinement['Insanity'])
+		sand += int(Agito_weapons_refinement['Sand'])
+		orichalcum += int(Agito_weapons_refinement['Orichalcum'])
+		rupies += int(Agito_weapons_refinement['Rupies'])
+	else:
+		pass
 
-		if desired_ub > 4:
-			needed_ub_second_half = desired_ub - 4
-			silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
-			gold_masks += needed_ub_second_half * int(Agito_weapons_last_4['Gold Masks'])
-			insanity += needed_ub_second_half * int(Agito_weapons_last_4['Insanity'])
-			sand += needed_ub_second_half * int(Agito_weapons_last_4['Sand'])
-			orichalcum += needed_ub_second_half * int(Agito_weapons_last_4['Orichalcum'])
-			rupies += needed_ub_second_half * int(Agito_weapons_last_4['Rupies'])
+	if 0 <= curr_ub <= 4 and desired_ub <= 4:
+		needed_ub_first_half = desired_ub - curr_ub
+		silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
+		gold_masks += needed_ub_first_half * int(Agito_weapons_first_4['Gold Masks'])
+		insanity += needed_ub_first_half * int(Agito_weapons_first_4['Insanity'])
+		sand += needed_ub_first_half * int(Agito_weapons_first_4['Sand'])
+		orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
+		rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
+	else:
+		needed_ub_first_half = 4 - curr_ub
+		silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
+		gold_masks += needed_ub_first_half * int(Agito_weapons_first_4['Gold Masks'])
+		insanity += needed_ub_first_half * int(Agito_weapons_first_4['Insanity'])
+		sand += needed_ub_first_half * int(Agito_weapons_first_4['Sand'])
+		orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
+		rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
 
-		result_dict['Silver Masks'] = silver_masks
-		result_dict['Gold Masks'] = gold_masks
-		result_dict['Insanity'] = insanity
-		result_dict['Sand'] = sand
-		result_dict['Orichalcum'] = orichalcum
-		result_dict['Rupies'] = rupies
+	if desired_ub > 4:
+		needed_ub_second_half = desired_ub - 4
+		silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
+		gold_masks += needed_ub_second_half * int(Agito_weapons_last_4['Gold Masks'])
+		insanity += needed_ub_second_half * int(Agito_weapons_last_4['Insanity'])
+		sand += needed_ub_second_half * int(Agito_weapons_last_4['Sand'])
+		orichalcum += needed_ub_second_half * int(Agito_weapons_last_4['Orichalcum'])
+		rupies += needed_ub_second_half * int(Agito_weapons_last_4['Rupies'])
+
+	result_dict['Silver Masks'] = silver_masks
+	result_dict['Gold Masks'] = gold_masks
+	result_dict['Insanity'] = insanity
+	result_dict['Sand'] = sand
+	result_dict['Orichalcum'] = orichalcum
+	result_dict['Rupies'] = rupies
 
 	return result_dict
 
