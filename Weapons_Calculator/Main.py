@@ -32,9 +32,9 @@ def calculator():
 	result_dict = dict()
 	check_wep = input('Have you crafted the base weapon? ')
 
-	if check_wep.lower() == 'yes' or 'y':
+	if check_wep.lower() == 'yes' or check_wep.lower() == 'y':
 		base_wep = True
-	else:
+	elif check_wep.lower() == 'no' or check_wep.lower() == 'n':
 		base_wep = False
 
 	curr_ub = int(input('How many unbinds does it have? '))
