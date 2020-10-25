@@ -1,6 +1,6 @@
 # Inspired by the EPICRPG Discord bot
 import random
-
+import time
 
 print('Welcome to this text based RPG!\n'
 	  "You can start by typing 'start'.\n")
@@ -31,6 +31,7 @@ while playing:
 		else:
 			new_amount = amount + int(inventory['fish'])
 			inventory['fish'] = new_amount
+		
 
 	if user_input == 'inventory':
 		print(inventory)
