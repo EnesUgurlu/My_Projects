@@ -19,6 +19,16 @@ def calculator():
 		'Orichalcum': '1',
 		'Rupies': '7500000'
 	}
+
+	Agito_weapons_refinement = {
+		'Silver Masks': '16',
+		'Gold Masks': '10',
+		'Insanity': '7',
+		'Sand': '0',
+		'Orichalcum': '1',
+		'Rupies': '2500000'
+	}
+
 	result_dict = dict()
 	check_wep = input('Have you crafted the base weapon? ')
 	if check_wep.lower() == 'yes' or 'y':
@@ -38,15 +48,17 @@ def calculator():
 		ref_status = str(input('Have you refined your weapon? '))
 
 		if ref_status.lower() == 'n' or ref_status.lower() == 'no':
-			silver_masks += int(Agito_weapons_last_4['Silver Masks'])
-			gold_masks += int(Agito_weapons_last_4['Gold Masks'])
-			insanity += int(Agito_weapons_last_4['Insanity'])
-			sand += int(Agito_weapons_last_4['Sand'])
-			orichalcum += int(Agito_weapons_last_4['Orichalcum'])
-			rupies += int(Agito_weapons_last_4['Rupies'])
+			silver_masks += int(Agito_weapons_refinement['Silver Masks'])
+			gold_masks += int(Agito_weapons_refinement['Gold Masks'])
+			insanity += int(Agito_weapons_refinement['Insanity'])
+			sand += int(Agito_weapons_refinement['Sand'])
+			orichalcum += int(Agito_weapons_refinement['Orichalcum'])
+			rupies += int(Agito_weapons_refinement['Rupies'])
+		else:
+			pass
 
-		if 0 <= curr_ub <= 4:
-			needed_ub_first_half = 4 - curr_ub
+		if 0 <= curr_ub <= 4 and desired_ub <= 4:
+			needed_ub_first_half = desired_ub - curr_ub
 			silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
 			gold_masks += needed_ub_first_half * int(Agito_weapons_first_4['Gold Masks'])
 			insanity += needed_ub_first_half * int(Agito_weapons_first_4['Insanity'])
@@ -54,6 +66,7 @@ def calculator():
 			orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
 			rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
 
+		if desired_ub > 4:
 			needed_ub_second_half = desired_ub - 4
 			silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
 			gold_masks += needed_ub_second_half * int(Agito_weapons_last_4['Gold Masks'])
