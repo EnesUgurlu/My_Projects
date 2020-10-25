@@ -25,7 +25,11 @@ def calculator():
 
 		curr_ub = int(input('How many unbinds does it have? '))
 		desired_ub = int(input('How many unbinds do you want to end at? '))
+		ref_status = str(input('Have you refined your weapon? '))
 		silver_masks = 0
+
+		if ref_status.lower() == 'n' or 'no':
+			silver_masks += int(Agito_weapons_first_4['Silver Masks'])
 
 		if curr_ub >= desired_ub:
 			print('You have more unbinds than you wanted!')
@@ -33,10 +37,10 @@ def calculator():
 
 		if 0 <= curr_ub <= 4:
 			needed_ub_first_half = 4 - curr_ub
-			silver_masks = needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
+			silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
 			needed_ub_second_half = desired_ub - 4
 			silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
-			# Todo: Add refinement logic
+
 
 		result_dict['Silver Masks'] = silver_masks
 
