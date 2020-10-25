@@ -1,42 +1,19 @@
-import math
+def get_number(prompt):
+	if prompt == 'Please input the first number:':
+		try:
+			num_1 = input(prompt)
+			num_1 = float(num_1)
+		except ValueError:
+			print('The input should be a number.')
+			get_number('Please input the first number:')
 
-# listy = []
-#
-# for i in range(16):
-# 	listy.append(i)
-#
-# for i, j in enumerate(listy):
-# 	print(i, math.factorial(j))
-#
-# print('\n')
-# print("Testing some numbers")
-#
-# numbers = [1, 4, 5, 9, 10, 11, 15]
-#
-# for num in numbers:
-# 	print(str(num) + '! has ' + str(num//5) + ' zeroes')
+	try:
+		num_2 = input('Please input the second number:')
+		num_2 = float(num_2)
+	except ValueError:
+		print('The input should be a number.')
+		get_number('Please input the second number:')
 
-def roman(n):
-	whole = ''
+	return (num_1, num_2)
 
-
-	if n >= 5:
-		whole += 'V'
-		n -= 5
-	if n >= 4:
-		whole += 'IV'
-		n -= 4
-	if n >= 3:
-		whole += 'III'
-		n -= 3
-	if n >= 2:
-		whole += 'II'
-		n -= 2
-	if n >= 1:
-		whole += 'I'
-		n -= 1
-
-	return whole
-
-print(roman(8))
-
+get_number('Please input the first number:')
