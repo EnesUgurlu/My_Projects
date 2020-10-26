@@ -117,7 +117,7 @@ def run():
 	except AttributeError:
 		print('You reach goal comrade')
 
-run()
+# run()
 
 def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 	# type_wep = input('Do you want to craft a HDT or Agito weapon? ') # Assume Agito for now
