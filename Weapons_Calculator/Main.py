@@ -70,6 +70,7 @@ def calculator():
 		orichalcum += int(Agito_weapons_refinement['Orichalcum'])
 		rupies += int(Agito_weapons_refinement['Rupies'])
 
+	# We only need the first 4 unbinds here
 	if 0 <= curr_ub <= 4 and desired_ub <= 4:
 		needed_ub_first_half = desired_ub - curr_ub
 		silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
@@ -78,7 +79,9 @@ def calculator():
 		sand += needed_ub_first_half * int(Agito_weapons_first_4['Sand'])
 		orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
 		rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
-	else:
+
+	# We need both the first and last 4 unbinds here
+	if 0 <= curr_ub <= 4 and desired_ub > 4:
 		needed_ub_first_half = 4 - curr_ub
 		silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
 		gold_masks += needed_ub_first_half * int(Agito_weapons_first_4['Gold Masks'])
@@ -87,8 +90,17 @@ def calculator():
 		orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
 		rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
 
-	if desired_ub > 4:
 		needed_ub_second_half = desired_ub - 4
+		silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
+		gold_masks += needed_ub_second_half * int(Agito_weapons_last_4['Gold Masks'])
+		insanity += needed_ub_second_half * int(Agito_weapons_last_4['Insanity'])
+		sand += needed_ub_second_half * int(Agito_weapons_last_4['Sand'])
+		orichalcum += needed_ub_second_half * int(Agito_weapons_last_4['Orichalcum'])
+		rupies += needed_ub_second_half * int(Agito_weapons_last_4['Rupies'])
+
+	# We only need the second 4 unbinds here
+	if curr_ub > 4 and desired_ub > 4:
+		needed_ub_second_half = desired_ub - curr_ub
 		silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
 		gold_masks += needed_ub_second_half * int(Agito_weapons_last_4['Gold Masks'])
 		insanity += needed_ub_second_half * int(Agito_weapons_last_4['Insanity'])
@@ -117,7 +129,7 @@ def run():
 	except AttributeError:
 		print('You reach goal comrade')
 
-# run()
+run()
 
 def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 	# type_wep = input('Do you want to craft a HDT or Agito weapon? ') # Assume Agito for now
@@ -187,7 +199,7 @@ def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 		orichalcum += int(Agito_weapons_refinement['Orichalcum'])
 		rupies += int(Agito_weapons_refinement['Rupies'])
 
-
+	# We only need the first 4 unbinds here
 	if 0 <= curr_ub <= 4 and desired_ub <= 4:
 		needed_ub_first_half = desired_ub - curr_ub
 		silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
@@ -196,7 +208,9 @@ def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 		sand += needed_ub_first_half * int(Agito_weapons_first_4['Sand'])
 		orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
 		rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
-	else:
+
+	# We need both the first and last 4 unbinds here
+	if 0 <= curr_ub <= 4 and desired_ub > 4:
 		needed_ub_first_half = 4 - curr_ub
 		silver_masks += needed_ub_first_half * int(Agito_weapons_first_4['Silver Masks'])
 		gold_masks += needed_ub_first_half * int(Agito_weapons_first_4['Gold Masks'])
@@ -205,8 +219,17 @@ def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 		orichalcum += needed_ub_first_half * int(Agito_weapons_first_4['Orichalcum'])
 		rupies += needed_ub_first_half * int(Agito_weapons_first_4['Rupies'])
 
-	if desired_ub > 4:
 		needed_ub_second_half = desired_ub - 4
+		silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
+		gold_masks += needed_ub_second_half * int(Agito_weapons_last_4['Gold Masks'])
+		insanity += needed_ub_second_half * int(Agito_weapons_last_4['Insanity'])
+		sand += needed_ub_second_half * int(Agito_weapons_last_4['Sand'])
+		orichalcum += needed_ub_second_half * int(Agito_weapons_last_4['Orichalcum'])
+		rupies += needed_ub_second_half * int(Agito_weapons_last_4['Rupies'])
+
+	# We only need the second 4 unbinds here
+	if curr_ub > 4 and desired_ub > 4:
+		needed_ub_second_half = desired_ub - curr_ub
 		silver_masks += needed_ub_second_half * int(Agito_weapons_last_4['Silver Masks'])
 		gold_masks += needed_ub_second_half * int(Agito_weapons_last_4['Gold Masks'])
 		insanity += needed_ub_second_half * int(Agito_weapons_last_4['Insanity'])
