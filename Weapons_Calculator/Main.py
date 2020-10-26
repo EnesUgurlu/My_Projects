@@ -108,6 +108,7 @@ def calculator():
 		orichalcum += needed_ub_second_half * int(Agito_weapons_last_4['Orichalcum'])
 		rupies += needed_ub_second_half * int(Agito_weapons_last_4['Rupies'])
 
+
 	result_dict['Silver Masks'] = silver_masks
 	result_dict['Gold Masks'] = gold_masks
 	result_dict['Insanity'] = insanity
@@ -117,19 +118,18 @@ def calculator():
 
 	return result_dict
 
+
+
+def write_to_file():
+	materials = calculator()
+	with open('weapons.txt', 'w') as file:
+		print(materials, file=file)
+
 # I put this here because I keep forgetting to comment these lines out when testing
 def run():
 	my_dict = calculator()
-	try:
-		for key in my_dict.keys():
-			if key == 'Rupies':
-				print(f'You need {my_dict[key] / 1000000}M {key}')
-			else:
-				print(f'You need {my_dict[key]} {key}')
-	except AttributeError:
-		print('You reach goal comrade')
+	write_to_file()
 
-run()
 
 def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 	# type_wep = input('Do you want to craft a HDT or Agito weapon? ') # Assume Agito for now
@@ -246,3 +246,5 @@ def calculator_for_testing(check_wep, curr_ub, desired_ub, ref_status):
 
 	return result_dict
 
+if __name__ == "__main__":
+	write_to_file()

@@ -1,0 +1,1 @@
+{'Silver Masks': 240, 'Gold Masks': 170, 'Insanity': 35, 'Sand': 4, 'Orichalcum': 5, 'Rupies': 40500000}
