@@ -8,6 +8,8 @@ class Player:
 		self.game = game
 		self.x = x * TILESIZE
 		self.y = y * TILESIZE
+		self.mapMoveX = 0
+		self.mapMoveY = 0
 
 	def spawn(self):
 		main_screen.blit(PLAYER, (self.x, self.y))
@@ -20,12 +22,16 @@ class Player:
 			if event.type == KEYDOWN:
 				if event.key == K_RIGHT:
 					self.move(dx=1)
+					self.mapMoveX += 1
 				if event.key == K_LEFT:
 					self.move(dx=-1)
+					self.mapMoveX += -1
 				if event.key == K_UP:
 					self.move(dy=-1)
+					self.mapMoveY += 1
 				if event.key == K_DOWN:
 					self.move(dy=1)
+					self.mapMoveY += -1
 
 	def move(self, dx=0, dy=0):
 		self.event()
@@ -39,6 +45,10 @@ class Player:
 					wall.rect.y == self.y + dy * TILESIZE:
 				return True
 		return False
+
+	def camera(self):
+		pass
+
 
 
 class Game:
@@ -84,11 +94,16 @@ player = Player(main_screen, 4, 4)
 
 pygame.key.set_repeat(100, 50)
 
+
+
 while play_game:
-	read_map()
+	openedMap = read_map()
 	Game.draw_grid(main_screen)
 	player.event()
 	player.spawn()
+
+	# main_screen.blit(openedMap, (0 - player.mapMoveX, 0 - player.mapMoveY))
+	# main_screen.blit(player, (x - player.mapMoveX, y - player.mapMoveY))
 
 	pygame.display.flip()
 	main_screen.fill((0, 0, 0))

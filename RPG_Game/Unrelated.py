@@ -1,19 +1,9 @@
-def get_number(prompt):
-	if prompt == 'Please input the first number:':
-		try:
-			num_1 = input(prompt)
-			num_1 = float(num_1)
-		except ValueError:
-			print('The input should be a number.')
-			get_number('Please input the first number:')
+# Test time :boggers:
 
-	try:
-		num_2 = input('Please input the second number:')
-		num_2 = float(num_2)
-	except ValueError:
-		print('The input should be a number.')
-		get_number('Please input the second number:')
+weights = [1.75, 0.75, 2, 1.75, 2, 1.75]
 
-	return (num_1, num_2)
-
-get_number('Please input the first number:')
+scores = [19/20, 6/10, 6/20, 171/232, 12/16, 17/20]
+tot = 0
+for i in range(len(weights)):
+	tot += (weights[i] * scores[i])
+print(tot)
