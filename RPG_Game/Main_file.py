@@ -103,7 +103,7 @@ while play_game:
 	player.spawn()
 
 	# main_screen.blit(openedMap, (0 - player.mapMoveX, 0 - player.mapMoveY))
-	# main_screen.blit(player, (x - player.mapMoveX, y - player.mapMoveY))
+	# main_screen.blit(player, (x - player.mapMoveX, y - player.mapMoveY)) a
 
 	pygame.display.flip()
 	main_screen.fill((0, 0, 0))
