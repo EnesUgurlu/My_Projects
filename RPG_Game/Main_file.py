@@ -75,6 +75,10 @@ class Game:
 		list_of_grass.append(grass)
 		main_screen.blit(grass.image, (grass.rect.x, grass.rect.y))
 
+	def move_camera(self, cameraX, cameraY):
+		pass
+
+
 def read_map():
 	map_to_list = []
 	with open(map, 'r') as file:
@@ -94,16 +98,15 @@ player = Player(main_screen, 4, 4)
 
 pygame.key.set_repeat(100, 50)
 
-
+opened_map = read_map()
 
 while play_game:
-	openedMap = read_map()
 	Game.draw_grid(main_screen)
 	player.event()
 	player.spawn()
 
-	# main_screen.blit(openedMap, (0 - player.mapMoveX, 0 - player.mapMoveY))
-	# main_screen.blit(player, (x - player.mapMoveX, y - player.mapMoveY)) a
+	main_screen.blit(opened_map, (0 - player.mapMoveX, 0 - player.mapMoveY))
+	main_screen.blit(player, (x - player.mapMoveX, y - player.mapMoveY))
 
 	pygame.display.flip()
 	main_screen.fill((0, 0, 0))
