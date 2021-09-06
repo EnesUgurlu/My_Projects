@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dino Man</title>
+</head>
+<body>
+    <script src="https://kaboomjs.com/lib/0.6.0/kaboom.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
+
+<!--========================-->
+<!--<!DOCTYPE html>-->
+
+<!--<html>-->
+
+<!--<head>-->
+<!--  <title>kaboom</title>-->
+<!--  <meta charset="utf-8">-->
+<!--  <style>-->
+<!--    * {-->
+<!--      margin: 0;-->
+<!--    }-->
+<!--    html,-->
+<!--    body {-->
+<!--      width: 100%;-->
+<!--      height: 100%;-->
+<!--      overflow: hidden;-->
+<!--    }-->
+<!--    canvas {-->
+<!--      display: block;-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<script src="https://kaboomjs.com/lib/0.5.0/kaboom.js"></script>-->
+<!--<script src="https://kaboomjs.com/lib/0.5.0/plugins/aseprite.js"></script>-->
+<!--<script src="https://kaboomjs.com/lib/0.5.0/plugins/pedit.js"></script>-->
+<!--<script src="https://kaboomjs.com/pub/legacy/kbmsprite.js"></script>-->
+
+<!--  <script>-->
+
+<!--kaboom({-->
+<!--  ...{"fullscreen":true,"width":240,"height":240,"scale":2,"startScene":"main","version":"0.5.0"},-->
+<!--  global: true,-->
+<!--  plugins: [ peditPlugin, asepritePlugin, kbmspritePlugin ],-->
+<!--});-->
+<!--loadKbmsprite("enemy", "sprites/enemy.kbmsprite");-->
+<!--loadKbmsprite("ground", "sprites/ground.kbmsprite");-->
+<!--loadKbmsprite("player", "sprites/player.kbmsprite");-->
+<!--scene("main", (args = {}) => {-->
+<!--    const player = kaboom.add([-->
+<!--      sprite('player'),-->
+<!--      scale(0.5),-->
+<!--      pos(20, 20), // change starting position of sprite-->
+<!--      body(), // add gravity-->
+<!--    ]);-->
+<!--    const MovementSpeed = 150;-->
+
+<!--    // when we press right arrow, the {} function will happen-->
+<!--    kaboom.keyDown('right', () => {-->
+<!--      player.move(MovementSpeed, 0) // position is (x, y)-->
+<!--    });-->
+
+<!--    keyDown('left', () => {-->
+<!--      player.move(-MovementSpeed, 0) // position is (x, y)-->
+<!--    });-->
+
+
+<!--    addLevel([-->
+<!--      '      ',-->
+<!--      '      ',-->
+<!--      'xx    ',-->
+<!--      ' xx E ',-->
+<!--      '  Exx ',-->
+<!--      '      ',-->
+<!--      'xxxxxx',-->
+<!--    ], {-->
+<!--      width: 40,-->
+<!--      height: 40,-->
+<!--      'x' : [sprite('ground.png'), solid()],-->
+<!--      'E' : [sprite('enemy.png'), scale(0.5), body(), 'dangerous']-->
+<!--    });-->
+
+<!--    player.collides('dangerous', () => {-->
+<!--      destroy(player)-->
+<!--    })-->
+<!--});-->
+
+<!--start("main");-->
+
+<!--  </script>-->
+<!--</body>-->
+
+<!--</html>-->

@@ -6,5 +6,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7 (My_Projects)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="kaboom" level="application" />
+    <orderEntry type="library" name="aseprite" level="application" />
+    <orderEntry type="library" name="pedit" level="application" />
+    <orderEntry type="library" name="kbmsprite" level="application" />
   </component>
 </module>
